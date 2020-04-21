@@ -1,8 +1,6 @@
 import { Schema } from 'mongoose';
-import connections from '../app.conection';
-import { IBook } from './interfaces/books.interface';
 
-const BooksSchema: Schema = new Schema(
+export const BooksSchema: Schema = new Schema(
   {
     blogpost: {
       type: Number,
@@ -32,5 +30,3 @@ const BooksSchema: Schema = new Schema(
     versionKey: false,
   },
 );
-
-export default connections.model<IBook>('BooksModel', BooksSchema);

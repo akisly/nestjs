@@ -1,14 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import BooksModel from './books.model';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { IBook } from './interfaces/books.interface';
 
 @Injectable()
 export class BooksService {
-  findAll(): Promise<IBook[]> {
-    return BooksModel.find({}).exec();
+  constructor(
+    @InjectModel('Books') private readonly booksModel: Model<IBook>,
+  ) {}
+
+  async findAll(): Promise<IBook[]> {
+    return await this.booksModel.find({}).exec();
   }
 
-  create(book: object): Promise<IBook> {
-    return BooksModel.create(book);
+  async create(book: object): Promise<IBook> {
+    return await this.booksModel.create(book);
   }
 }

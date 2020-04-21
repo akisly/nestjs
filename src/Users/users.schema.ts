@@ -1,8 +1,6 @@
 import { Schema } from 'mongoose';
-import connections from '../app.conection';
-import { IUser } from './interfaces/users.interface';
 
-const UsersSchema: Schema = new Schema(
+export const UsersSchema: Schema = new Schema(
   {
     firstName: {
       type: String,
@@ -34,5 +32,3 @@ const UsersSchema: Schema = new Schema(
     versionKey: false,
   },
 );
-
-export default connections.model<IUser>('UsersModel', UsersSchema);
