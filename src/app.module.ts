@@ -8,7 +8,7 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://akisly:Sherstnova2306@claster0-dzby6.mongodb.net/lesson9',
+      'mongodb+srv://akisly:Sherstnova2306@claster0-dzby6.mongodb.net/lesson9?retryWrites=true&w=majority',
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
