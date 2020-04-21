@@ -7,11 +7,14 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGOLAB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    }),
+    MongooseModule.forRoot(
+      'mongodb//akisly:Sherstnova2306@claster0-dzby6.mongodb.net/lesson9',
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+      },
+    ),
     UsersModule,
     BooksModule,
   ],
