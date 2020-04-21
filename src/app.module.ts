@@ -5,10 +5,10 @@ import { BooksModule } from './Books/books.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      `mongodb+srv://akisly:Sherstnova2306@claster0-dzby6.mongodb.net/lesson9?retryWrites=true&w=majority`,
-      { useNewUrlParser: true },
-    ),
+    MongooseModule.forRoot(process.env.MONGOLAB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }),
     UsersModule,
     BooksModule,
   ],
