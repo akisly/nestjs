@@ -1,8 +1,7 @@
 import { Controller, Get, Post, Body, Req, Res, Next } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { Request, Response, NextFunction } from 'express';
-import { IBook } from './interfaces/books.interface';
-import { CreateBookDto } from './dto/create-book.dto';
+import { Book } from './books.entity';
 
 @Controller()
 export class BooksController {
@@ -15,7 +14,7 @@ export class BooksController {
     @Next() next: NextFunction,
   ): Promise<object> {
     try {
-      const books = await this.booksService.findAll();
+      const books: Book[] = await this.booksService.findAll();
 
       return res.status(201).json({
         books,
@@ -29,11 +28,11 @@ export class BooksController {
   async create(
     @Req() req: Request,
     @Res() res: Response,
-    @Body() createBookDto: CreateBookDto,
+    @Body() body: Book,
     @Next() next: NextFunction,
   ): Promise<object> {
     try {
-      const book: IBook = await this.booksService.create(createBookDto);
+      const book: Book = await this.booksService.create(body);
 
       return res.status(201).json({
         status: 'created',

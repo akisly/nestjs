@@ -1,8 +1,7 @@
 import { Controller, Get, Post, Body, Req, Res, Next } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response, NextFunction } from 'express';
-import { IUser } from './interfaces/users.interface';
-import { CreateUserDto } from './dto/create-user.dto';
+import { User } from './users.entity';
 
 @Controller()
 export class UsersController {
@@ -15,7 +14,7 @@ export class UsersController {
     @Next() next: NextFunction,
   ): Promise<object> {
     try {
-      const users = await this.usersService.findAll();
+      const users: User[] = await this.usersService.findAll();
 
       return res.status(201).json({
         users,
@@ -29,11 +28,11 @@ export class UsersController {
   async create(
     @Req() req: Request,
     @Res() res: Response,
-    @Body() createUserDto: CreateUserDto,
+    @Body() body: User,
     @Next() next: NextFunction,
   ): Promise<object> {
     try {
-      const user: IUser = await this.usersService.create(createUserDto);
+      const user: User = await this.usersService.create(body);
 
       return res.status(201).json({
         status: 'created',
