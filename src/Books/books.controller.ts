@@ -35,7 +35,7 @@ export class BooksController {
       const book: Book = await this.booksService.create(body);
 
       return res.status(201).json({
-        status: 'created',
+        statusCode: 201,
         book,
       });
     } catch (error) {

@@ -35,7 +35,7 @@ export class UsersController {
       const user: User = await this.usersService.create(body);
 
       return res.status(201).json({
-        status: 'created',
+        statusCode: 201,
         user,
       });
     } catch (error) {
